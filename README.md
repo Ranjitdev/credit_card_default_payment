@@ -6,6 +6,6 @@
 **The objective of the project is to build a predictive model that can assess the probability of a credit card user defaulting on their payments. This model can be valuable to banks, financial institutions, and credit card companies as it helps them identify customers who are more likely to default and take appropriate actions to mitigate the risks.**
 
 ## About Dataset
-    - Link : [Here](https://www.kaggle.com/datasets/uciml/default-of-credit-card-clients-dataset)
-    - Dataset Information
-        - **This dataset contains information on default payments, demographic factors, credit data, history of payment, and bill statements of credit card clients in Taiwan from April 2005 to September 2005.**
+- Link : [Here](https://www.kaggle.com/datasets/uciml/default-of-credit-card-clients-dataset)
+- Dataset Information
+  - **This dataset contains information on default payments, demographic factors, credit data, history of payment, and bill statements of credit card clients in Taiwan from April 2005 to September 2005.**
