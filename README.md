@@ -8,4 +8,27 @@
 ## About Dataset
 - Link : [Here](https://www.kaggle.com/datasets/uciml/default-of-credit-card-clients-dataset)
 - Dataset Information
-  - **This dataset contains information on default payments, demographic factors, credit data, history of payment, and bill statements of credit card clients in Taiwan from April 2005 to September 2005.**
+  - This dataset contains information on default payments, demographic factors, credit data, history of payment, and bill statements of credit card clients in Taiwan from April 2005 to September 2005.
+    - **Pay : Repayment status**
+    - **Bill : Amount of bill statement**
+    - **Paid : Amount of previous payment**
+    - **-2 = Balance paid in full and no transactions this period (we may refer to this credit card account as having been 'inactive' this period**
+    - **-1 = Balance paid in full, but account has a positive balance at end of period due to recent transactions for which payment has not yet come due**
+    - **0 = Customer paid the minimum due amount, but not the entire balance. I.e., the customer paid enough for their account to remain in good standing, but did revolve a balance**
+    - **1 = payment delay for one month**
+    - **2 = payment delay for two months**
+    . 
+    . 
+    .
+    - **8 = payment delay for eight months**
+    - **9 = payment delay for nine months and above.**
+
+## Common Setup and Commands
+- Create virtual enviroment:
+  - > conda create -p venv python=3.9 -y
+- Activate the virtual enviroment
+  - > conda activate venv/
+- Install required packages
+  - > pip install -r requirements.txt
+- Install setup
+  - > python setup.py install
