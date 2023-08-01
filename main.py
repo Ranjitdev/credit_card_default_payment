@@ -1,9 +1,9 @@
 from src.components.data_ingesion import InitiateDataIngesion
 from flask import Flask
 import requests
+import warnings
+warnings.filterwarnings('ignore')
 
-
-InitiateDataIngesion().get_data()
 
 app = Flask(__name__)
 
