@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="static/css/style.css">
+    <title>Credit Card Payment</title>
+</head>
+
+<body>
+    <header><h1>Logs</h1></header>
+
+    <form>
+        <label for="log">Choose a log file:</label>
+        <select id="log" name="log">
+            {% for option in log_list %}
+            <option value="{{ option }}">{{ option }}</option>
+            {% endfor %}
+        </select>
+
+        <input type="submit" class="submit" value="Submit">
+    </form>
+
+    {% if selected%}
+    <label>{{ selected }}</label>
+    {% endif %}
+
+</body>

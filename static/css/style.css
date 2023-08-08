@@ -1,0 +1,21 @@
+body {
+    background-image: url('images/dog.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #ffffff;
+    background-attachment: fixed;
+}
+
+label {
+    font-family: 'Times New Roman';
+    font-size: xxx-large;
+    left: 0;
+    top: 0;
+    width: 100%;
+    text-align: center;
+    color: #ffffff;
+    text-shadow: -1px 0 black, 0 2px rgb(0, 0, 0), 2px 0 rgb(186, 255, 68), 0 -1px black;
+    border: 2px #000000;
+}
+

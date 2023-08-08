@@ -1,0 +1,120 @@
+body {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #436fff;
+    background-attachment: fixed;
+}
+
+header {
+    font-size: larger;
+    font-family: Arial;
+    padding: 1px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    text-align: center;
+}
+
+h1 {
+    color: #436fff;
+    text-shadow: -1px 0 rgb(43, 64, 255), 0 3px rgb(12, 0, 182), 1px 0 rgb(0, 0, 0), 0 -2px rgb(255, 255, 255);
+}
+
+form {
+    font-size: larger;
+    padding: 50px;
+    top: 0;
+    left: 0;
+}
+
+input {
+    font-size: large;
+    color: #000000;
+    width: 100%;
+    padding: 10px 10px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    background-color: #84a1ff;
+    border-color: #000000;
+    border-style: outset;
+}
+select {
+    font-size: large;
+    color: #151515;
+    width: 100%;
+    padding: 10px 10px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    background-color: #436fff;
+    border-color: #000000;
+    border-style: outset;
+    
+}
+label {
+    font-size: larger;
+    color: #000000;
+    text-shadow: 0 0 4px #caff6e;
+}
+
+p {
+    text-align: center;
+    border: 10px #000000;
+}
+
+.prediction_result {
+    background-color: #436fff;
+    font-size: xx-large;
+    font-family: sans-serif;
+}
+
+.dropbtn {
+    background-color: #436fff;
+    border: none;
+    cursor: pointer;
+    font-size: xxx-large;
+    font-family: Arial;
+    color: #436fff;
+    text-shadow: -1px 0 rgb(43, 64, 255), 0 3px rgb(12, 0, 182), 1px 0 rgb(0, 0, 0), 0 -2px rgb(255, 255, 255);
+  }
+  
+.dropdown {
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #436fff;
+    font-size: xx-large;
+    font-family: Arial;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    width: max-content;
+}
+
+.dropdown-content a {
+    text-decoration: none;
+    display: block;
+    color: #e0e5ff;
+    text-shadow: 2px 2px 5px #000000;
+}
+
+.dropdown-content a:hover {
+    background-color: #436fff;
+    color: #ffffff;
+    text-shadow: -1px 0 black, 0 2px black, 2px 0 black, 0 -1px black;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #436fff;
+    color: #ffffff;
+    text-shadow: -1px 0 rgb(0, 0, 0), 0 2px rgb(0, 0, 0), 2px 0 rgb(0, 0, 0), 0 -1px rgb(0, 0, 0);
+}

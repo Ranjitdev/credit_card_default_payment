@@ -1,7 +1,7 @@
 from src.exception import CustomException
 from src.logger import logging
 from dataclasses import dataclass
-from typing import List
+from typing import List, Tuple
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 from sklearn.impute import SimpleImputer
 from sklearn.pipeline import Pipeline, make_pipeline
@@ -16,7 +16,7 @@ warnings.filterwarnings('ignore')
 
 @dataclass
 class DataTransformationConfig:
-    notebook_data = r'notebook_credit_card_default\data.csv'
+    notebook_data = r'notebook\data.csv'
     data = r'artifacts\data.csv'
     train_data = r'artifacts\train.csv'
     test_data = r'artifacts\test.csv'
@@ -25,7 +25,7 @@ class DataTransformationConfig:
 
 
 class InitiateDataTransformation:
-    def __init__(self):
+    def __init__(self) -> None:
         self.__config = DataTransformationConfig
         self._target = 'next_month'
         self._categorical_features = ['sex', 'marrige']
@@ -50,7 +50,7 @@ class InitiateDataTransformation:
         except Exception as e:
             raise CustomException(e, sys)
     
-    def transform_data(self, data=None, train_data=None, test_data=None):
+    def transform_data(self, data=None, train_data=None, test_data=None) -> Tuple[List[int], List[int], List[int], List[int]]:
         try:
             if data is None:
                 data = pd.read_csv(self.__config.data)
