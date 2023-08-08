@@ -18,7 +18,7 @@ app = Flask(__name__)
 def home():
     return render_template('index.html')
 
-@app.route('/submit', methods=['POST', 'GET'])
+@app.route('/submit', methods=['GET', 'POST'])
 def predict():
     if request.method == 'POST':
         try:
@@ -79,14 +79,14 @@ def predict():
         except Exception as e:
             raise CustomException(e, sys)
     else:
-        return 'Method not matching'
+        return str(request.method) + ' is wrong method'
 
 @app.route('/raw_data',  methods=['POST', 'GET'])
 def raw_data():
     try:
         data = pd.read_csv('artifacts/data.csv')
         data_html = data.to_html(classes='table table-bordered table-hover', index=False)
-        return render_template('raw_data.html', raw_data = data_html)
+        return render_template('raw_data.html', raw_data=data_html)
     except Exception as e:
         raise CustomException(e, sys)
 
@@ -111,17 +111,6 @@ def scores():
     except Exception as e:
         raise CustomException(e, sys)
 
-@app.route('/logs', methods=['POST', 'GET'])
-def logs():
-    try:
-        selection = request.form.get('log')
-        log_list = []
-        for i, j in enumerate(os.listdir('logs')):
-            log_list.append(j)
-        print(selection)
-        return render_template('logs.html', log_list=log_list, selected=selection)
-    except Exception as e:
-        raise CustomException(e, sys)
 
 if __name__=='__main__':
     app.run(debug=True, port=5000)
