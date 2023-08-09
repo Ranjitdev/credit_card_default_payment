@@ -1,21 +1,42 @@
 body {
-    background-image: url('images/dog.jpg');
+    background-image: url('images/img1.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    background-color: #ffffff;
+    background-color: #436fff;
     background-attachment: fixed;
 }
 
-label {
+header {
     font-family: 'Times New Roman';
     font-size: xxx-large;
     left: 0;
     top: 0;
     width: 100%;
     text-align: center;
-    color: #ffffff;
-    text-shadow: -1px 0 black, 0 2px rgb(0, 0, 0), 2px 0 rgb(186, 255, 68), 0 -1px black;
+    color: #436fff;
+    text-shadow: -1px 0 rgb(255, 255, 255), 0 3px rgb(12, 0, 182), 1px 0 rgb(0, 0, 0), 0 -2px rgb(255, 255, 255);
     border: 2px #000000;
 }
 
+.container {
+    font-size: large;
+    background-position: center;
+    background-color: #436fff;
+    width: max-content;
+    text-align: center;
+    color: #000000;
+    border: 3px #5c82ff;
+    border-style: outset;
+}
+
+.scores_container {
+    font-size: large;
+    background-position: center;
+    background-color: #436fff;
+    width: 100%;
+    text-align: center;
+    color: #000000;
+    border: 3px #5c82ff;
+    border-style: outset;
+}

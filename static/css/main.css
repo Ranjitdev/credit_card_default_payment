@@ -9,11 +9,12 @@ body {
 header {
     font-size: larger;
     font-family: Arial;
-    padding: 1px;
     left: 0;
     top: 0;
     width: 100%;
     text-align: center;
+    border: 5px #5c82ff;
+    border-style: outset;
 }
 
 h1 {
@@ -54,7 +55,7 @@ select {
 label {
     font-size: larger;
     color: #000000;
-    text-shadow: 0 0 4px #caff6e;
+    text-shadow: 0 0 3px #0d00ff, 0 0 5px #ffffff;
 }
 
 p {
@@ -70,18 +71,19 @@ p {
 
 .dropbtn {
     background-color: #436fff;
-    border: none;
     cursor: pointer;
     font-size: xxx-large;
     font-family: Arial;
     color: #436fff;
     text-shadow: -1px 0 rgb(43, 64, 255), 0 3px rgb(12, 0, 182), 1px 0 rgb(0, 0, 0), 0 -2px rgb(255, 255, 255);
+    border: 3px #5c82ff;
+    border-style: outset;
   }
   
 .dropdown {
     position: fixed;
     left: 0;
-    top: 0;
+    top: 120px;
     display: inline-block;
 }
 
@@ -94,6 +96,8 @@ p {
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
     width: max-content;
+    border: 1px #000000;
+    border-style: double;
 }
 
 .dropdown-content a {
