@@ -22,4 +22,3 @@ def load_obj(path: str):
         file_obj = dill.load(file)
         logging.info(f'File {path} loaded successfully')
         return file_obj
-  

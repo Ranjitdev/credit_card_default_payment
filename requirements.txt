@@ -3,5 +3,4 @@ numpy
 dill
 scikit-learn
 flask
-requests
 -e .

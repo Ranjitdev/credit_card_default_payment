@@ -6,8 +6,6 @@ from src.exception import CustomException
 from src.logger import logging
 from flask import Flask, render_template, request
 import pandas as pd
-import requests
-import os
 import sys
 
 
@@ -113,4 +111,4 @@ def scores():
 
 
 if __name__=='__main__':
-    app.run(debug=True, port=5000)
+    app.run(debug=True, port=5000, host='0.0.0.0')

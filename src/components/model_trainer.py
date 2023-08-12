@@ -106,7 +106,7 @@ class InitiateModelTraining:
             logging.info('Model testing done successfully')
         except Exception as e:
             raise CustomException(e, sys)
-        
+
     def evaluate_models(self):
         try:
             start_total_time = datetime.now()
@@ -136,7 +136,7 @@ class InitiateModelTraining:
             return result
         except Exception as e:
             raise CustomException(e, sys)
-    
+
     @staticmethod
     def evaluate_scores(result: dict) -> Tuple[str, float, str]:
         try:

@@ -17,13 +17,13 @@
     - **0 = Customer paid the minimum due amount, but not the entire balance. I.e., the customer paid enough for their account to remain in good standing, but did revolve a balance**
     - **1 = payment delay for one month**
     - **2 = payment delay for two months**
-    . 
-    . 
-    .
+    - . 
+    - . 
+    - .
     - **8 = payment delay for eight months**
     - **9 = payment delay for nine months and above.**
 
-## Common Setup and Commands
+## Setup
 - Create virtual enviroment:
   - > conda create -p venv python=3.9 -y
 - Activate the virtual enviroment
@@ -32,3 +32,11 @@
   - > pip install -r requirements.txt
 - Install setup
   - > python setup.py install
+- Build docker image
+  - > docker build -t ranjitkundu/credit_card_default .
+- See docker images
+  - > docker images
+- Run the docker image
+  - > docker run -p 5000:5000 ranjitkundu/credit_card_default
+- Check running status
+  - > docker ps
