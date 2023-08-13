@@ -56,9 +56,9 @@ class ModelTrainerConfig:
             # 'criterion': ['gini', 'entropy', 'log_loss'],
             # 'splitter': ['best','random'],
             'max_depth': range(5, 15, 3),
-            # 'min_samples_split': range(8, 16, 2),
-            # 'min_samples_leaf': range(5, 15, 3),
-            # 'max_features': ['sqrt','log2']
+            'min_samples_split': range(8, 16, 2),
+            'min_samples_leaf': range(5, 15, 3),
+            'max_features': ['sqrt','log2']
         },
         'RandomForestClassifier': {
             # 'n_estimators': [25, 50, 75, 100],
