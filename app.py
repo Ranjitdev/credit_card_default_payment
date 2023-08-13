@@ -4,7 +4,7 @@ from src.components.model_trainer import InitiateModelTraining
 from src.pipeline.data_pipe import DataPipe
 from src.exception import CustomException
 from src.logger import logging
-from flask import Flask, render_template, request
+from flask import Flask, flash, request, redirect, url_for, render_template
 import pandas as pd
 import sys
 
@@ -20,7 +20,6 @@ def home():
 def predict():
     if request.method == 'POST':
         try:
-            name = request.form.get('name')
             total_credit = request.form.get('total_credit')
             sex = request.form.get('sex')
             education = request.form.get('education')
@@ -71,20 +70,31 @@ def predict():
                 'paid6_apr': paid6_apr
             }
             
-            prediction = DataPipe(user_input=user_input).predict_default()
+            
+            prediction = DataPipe().predict_default(data=user_input)
             logging.info('Got the data from web and sented predicted result to web')
-            return render_template('index.html', name=name, prediction=prediction)
+            return render_template('index.html', prediction=prediction)
         except Exception as e:
             raise CustomException(e, sys)
     else:
         return str(request.method) + ' is wrong method'
 
-@app.route('/raw_data',  methods=['POST', 'GET'])
+@app.route('/multi_entry',  methods=['POST', 'GET'])
+def multi_entry():
+    try:
+        csv_file = request.files.get('file')
+        output_data = DataPipe().predict_multiple(data=csv_file)
+        output_data = output_data.to_html(classes='table table-bordered table-hover', index=False)
+        return render_template('excel_data.html', raw_data=output_data)
+    except Exception as e:
+            raise CustomException(e, sys)
+
+@app.route('/excel_data',  methods=['POST', 'GET'])
 def raw_data():
     try:
-        data = pd.read_csv('artifacts/data.csv')
+        data = pd.read_csv('artifacts/data.csv').drop('next_month', axis=1)
         data_html = data.to_html(classes='table table-bordered table-hover', index=False)
-        return render_template('raw_data.html', raw_data=data_html)
+        return render_template('excel_data.html', raw_data=data_html)
     except Exception as e:
         raise CustomException(e, sys)
 

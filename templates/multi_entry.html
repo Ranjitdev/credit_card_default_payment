@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="static/css/style.css">
+    <title>Credit Card Payment</title>
+</head>
+
+<body>
+    <header><h1>Excel data</h1></header>
+
+    <h1>Data Content Description</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Pay</th>
+                <th>Bill</th>
+                <th>Paid</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Repayment status</td>
+                <td>Amount of bill statement</td>
+                <td>Amount of previous payment</td>
+            </tr>
+            <tr>
+                <td>-2 = Balance paid in full and no transactions this period (we may refer to this credit card account as having been 'inactive' this period)</td>
+            </tr>
+            <tr>
+                <td>-1 = Balance paid in full, but account has a positive balance at end of period due to recent transactions for which payment has not yet come due</td>
+            </tr>
+            <tr>
+                <td>0 = Customer paid the minimum due amount, but not the entire balance. I.e., the customer paid enough for their account to remain in good standing, but did revolve a balance</td>
+            </tr>
+            <tr>
+                <td>1 = payment delay for one month</td>
+            </tr>
+            <tr>
+                <td>2 = payment delay for two months</td>
+            </tr>
+            <tr>
+                <td>...</td>
+            </tr>
+            <tr>
+                <td>8 = payment delay for eight months</td>
+            </tr>
+            <tr>
+                <td>9 = payment delay for nine months and above.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <form action="/submit" method='POST' enctype="multipart/form-data">
+        <label class="csv_tag">Multi Entry:</label>
+        <br>
+        <div class="entry">
+            <!--upload csv-->
+            <label for="file" class="csv_tag">Upload Excel or csv File</label>
+            <input type="file" name="file" class="upload_csv" required>
+            <input type="submit" value="Upload" class="csv_submit">
+        </div>
+    </form>
+</body>

@@ -40,6 +40,30 @@ input {
     border-color: #000000;
     border-style: outset;
 }
+
+.entry {
+    width: 100%;
+    border: 5px #5c82ff;
+    border-style: outset;
+}
+
+.upload_csv {
+    width: 50%;
+}
+
+.csv_tag {
+    font-size: xx-large;
+    width: max-content;
+}
+
+.csv_submit {
+    width: 10%;
+    font-size: medium;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #00ff48;
+    background-color: #000000;
+}
+
 select {
     font-size: large;
     color: #151515;
@@ -52,6 +76,7 @@ select {
     border-style: outset;
     
 }
+
 label {
     font-size: larger;
     color: #000000;
@@ -64,19 +89,20 @@ p {
 }
 
 .prediction_result {
-    background-color: #436fff;
+    width: 100%;
     font-size: xx-large;
     font-family: sans-serif;
 }
 
 .dropbtn {
     background-color: #436fff;
+    background-image: url(images/menu.jpg);
+    background-size: cover;
     cursor: pointer;
     font-size: xxx-large;
     font-family: Arial;
-    color: #436fff;
-    text-shadow: -1px 0 rgb(43, 64, 255), 0 3px rgb(12, 0, 182), 1px 0 rgb(0, 0, 0), 0 -2px rgb(255, 255, 255);
-    border: 3px #5c82ff;
+    color: transparent;
+    border: 3px #ffffff;
     border-style: outset;
   }
   
@@ -98,6 +124,7 @@ p {
     width: max-content;
     border: 1px #000000;
     border-style: double;
+    text-align: left;
 }
 
 .dropdown-content a {
@@ -118,7 +145,7 @@ p {
 }
 
 .dropdown:hover .dropbtn {
-    background-color: #436fff;
-    color: #ffffff;
-    text-shadow: -1px 0 rgb(0, 0, 0), 0 2px rgb(0, 0, 0), 2px 0 rgb(0, 0, 0), 0 -1px rgb(0, 0, 0);
+    color: transparent;
+    border: 3px #1d1d1d;
+    border-style: outset;
 }

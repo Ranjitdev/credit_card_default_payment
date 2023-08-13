@@ -19,24 +19,38 @@ header {
     border: 2px #000000;
 }
 
-.container {
-    font-size: large;
-    background-position: center;
-    background-color: #436fff;
-    width: max-content;
-    text-align: center;
+form {
+    font-size: larger;
+    padding: 50px;
+    top: 0;
+    left: 0;
+}
+
+input {
     color: #000000;
-    border: 3px #5c82ff;
+    width: 100%;
+    padding: 10px 10px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    background-color: #84a1ff;
+    border-color: #000000;
     border-style: outset;
 }
 
-.scores_container {
-    font-size: large;
-    background-position: center;
+label {
+    background-color: #84a1ff;
+    border-color: #000000;
+    border-style: outset;
+    color: #000000;
+    text-shadow: 0 0 3px #0d00ff, 0 0 5px #ffffff;
+}
+
+table {
     background-color: #436fff;
-    width: 100%;
+    font-size: large;
     text-align: center;
     color: #000000;
-    border: 3px #5c82ff;
+    text-shadow: 0 0 3px #0d00ff, 0 0 5px #ffffff;
+    border-color: #000000;
     border-style: outset;
 }

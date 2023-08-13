@@ -13,9 +13,10 @@
         <div class="dropdown">
             <button class="dropbtn">...</button>
             <div class="dropdown-content">
-                <a href="/raw_data">View Excel Data</a>
+                <a href="/multi_entry">Excel Entry</a>
+                <a href="/excel_data">Excel Data View</a>
                 <a href="/retrain_model">Retrain Model</a>
-                <a href="/scores">View Model Scores</a>
+                <a href="/scores">Model Scores</a>
             </div>
         </div>
         <h1>Check next month client is going to pay credit card bill or not</h1>
@@ -23,8 +24,7 @@
 
     <p class="prediction_result">
         {% if prediction%}
-        <label>{{ name }}</label>
-        <label for="prediction_result">is going to pay next month credit card bill:</label>
+        <label for="prediction_result">Client is going to pay next month credit card bill:</label>
         <label id="prediction_result">{{ prediction }}</label>
         {% endif %}
     </p>
@@ -35,231 +35,225 @@
         {% endif %}
     </p>
 
-    
-
     <form action="/submit" method="POST">
+        <div class="entry">
+            <!--total_credit-->
+            <label for="total_credit">Total credit:</label>
+            <input type="number" id="total_credit" name="total_credit" placeholder="Enter total credit amount" required>
+            <br>
 
-        <!--name-->
-        <label for="name">Name</label>
-        <input type="text" id="name" name="name" placeholder="Enter client name">
-        <br>
+            <!--sex-->
+            <label for="sex">Gender:</label>
+            <select id="sex" name="sex" required>
+                <option value="">Select gender</option>
+                <option value="M">Male</option>
+                <option value="F">Female</option>
+            </select>
+            <br>
 
-        <!--total_credit-->
-        <label for="total_credit">Total credit:</label>
-        <input type="number" id="total_credit" name="total_credit" placeholder="Enter total credit amount" required>
-        <br>
+            <!--education-->
+            <label for="education">Education:</label>
+            <select id="education" name="education" required>
+                <option value="">Select educational qualification</option>
+                <option value="1">Graduate school</option>
+                <option value="2">University</option>
+                <option value="3">High school</option>
+                <option value="4">Others</option>
+            </select>
+            <br>
 
-        <!--sex-->
-        <label for="sex">Gender:</label>
-        <select id="sex" name="sex" required>
-            <option value="">Select gender</option>
-            <option value="M">Male</option>
-            <option value="F">Female</option>
-        </select>
-        <br>
+            <!--marrige-->
+            <label for="marrige">Marrige:</label>
+            <select id="marrige" name="marrige" required>
+                <option value="">Select marrital status</option>
+                <option value="married">Married</option>
+                <option value="single">Single</option>
+                <option value="divorced">Divorced</option>
+                <option value="others">Others</option>
+            </select>
+            <br>
 
-        <!--education-->
-        <label for="education">Education:</label>
-        <select id="education" name="education" required>
-            <option value="">Select educational qualification</option>
-            <option value="1">Graduate school</option>
-            <option value="2">University</option>
-            <option value="3">High school</option>
-            <option value="4">Others</option>
-        </select>
-        <br>
+            <!--age-->
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" min="10" max="100" placeholder="Enter client age range 10-100" required>
+            <br>
 
-        <!--marrige-->
-        <label for="marrige">Marrige:</label>
-        <select id="marrige" name="marrige" required>
-            <option value="">Select marrital status</option>
-            <option value="married">Married</option>
-            <option value="single">Single</option>
-            <option value="divorced">Divorced</option>
-            <option value="others">Others</option>
-        </select>
-        <br>
+            <!--pay1_sep-->
+            <label for="pay1_sep">Payment 1:</label>
+            <select id="pay1_sep" name="pay1_sep" required>
+                <option value="">Select payment for september</option>
+                <option value="-2">Balance paid in full and no transactions this period</option>
+                <option value="-1">Balance paid in full, but account has a positive balance</option>
+                <option value="0">Customer paid the minimum due amount, but not the entire balance</option>
+                <option value="1">Payment delay for 1 month</option>
+                <option value="2">Payment delay for 2 month</option>
+                <option value="3">Payment delay for 3 month</option>
+                <option value="4">Payment delay for 4 month</option>
+                <option value="5">Payment delay for 5 month</option>
+                <option value="6">Payment delay for 6 month</option>
+                <option value="7">Payment delay for 7 month</option>
+                <option value="8">Payment delay for 8 month</option>
+                <option value="9">Payment delay for 9 month and above</option>
+            </select>
+            <br>
 
-        <!--age-->
-        <label for="age">Age:</label>
-        <input type="number" id="age" name="age" min="10" max="100" placeholder="Enter client age range 10-100" required>
-        <br>
+            <!--bill1_sep-->
+            <label for="bill1_sep">Bill 1 for september:</label>
+            <input type="number" id="bill1_sep" name="bill1_sep" placeholder="Enter amount" required>
+            <br>
 
-        <!--pay1_sep-->
-        <label for="pay1_sep">Payment 1:</label>
-        <select id="pay1_sep" name="pay1_sep" required>
-            <option value="">Select payment for september</option>
-            <option value="-2">Balance paid in full and no transactions this period</option>
-            <option value="-1">Balance paid in full, but account has a positive balance</option>
-            <option value="0">Customer paid the minimum due amount, but not the entire balance</option>
-            <option value="1">Payment delay for 1 month</option>
-            <option value="2">Payment delay for 2 month</option>
-            <option value="3">Payment delay for 3 month</option>
-            <option value="4">Payment delay for 4 month</option>
-            <option value="5">Payment delay for 5 month</option>
-            <option value="6">Payment delay for 6 month</option>
-            <option value="7">Payment delay for 7 month</option>
-            <option value="8">Payment delay for 8 month</option>
-            <option value="9">Payment delay for 9 month and above</option>
-        </select>
-        <br>
+            <!--paid1_sep-->
+            <label for="paid1_sep">Paid 1 for september:</label>
+            <input type="number" id="paid1_sep" name="paid1_sep" placeholder="Enter amount" required>
+            <br>
 
-        <!--bill1_sep-->
-        <label for="bill1_sep">Bill 1 for september:</label>
-        <input type="number" id="bill1_sep" name="bill1_sep" placeholder="Enter amount" required>
-        <br>
+            <!--pay2_aug-->
+            <label for="pay2_aug">Payment 2:</label>
+            <select id="pay2_aug" name="pay2_aug" required>
+                <option value="">Select payment 2 august</option>
+                <option value="-2">Balance paid in full and no transactions this period</option>
+                <option value="-1">Balance paid in full, but account has a positive balance</option>
+                <option value="0">Customer paid the minimum due amount, but not the entire balance</option>
+                <option value="1">Payment delay for 1 month</option>
+                <option value="2">Payment delay for 2 month</option>
+                <option value="3">Payment delay for 3 month</option>
+                <option value="4">Payment delay for 4 month</option>
+                <option value="5">Payment delay for 5 month</option>
+                <option value="6">Payment delay for 6 month</option>
+                <option value="7">Payment delay for 7 month</option>
+                <option value="8">Payment delay for 8 month</option>
+                <option value="9">Payment delay for 9 month and above</option>
+            </select>
+            <br>
 
-        <!--paid1_sep-->
-        <label for="paid1_sep">Paid 1 for september:</label>
-        <input type="number" id="paid1_sep" name="paid1_sep" placeholder="Enter amount" required>
-        <br>
+            <!--bill2_aug-->
+            <label for="bill2_aug">Bill 2 for august:</label>
+            <input type="number" id="bill2_aug" name="bill2_aug" placeholder="Enter amount" required>
+            <br>
 
-        <!--pay2_aug-->
-        <label for="pay2_aug">Payment 2:</label>
-        <select id="pay2_aug" name="pay2_aug" required>
-            <option value="">Select payment 2 august</option>
-            <option value="-2">Balance paid in full and no transactions this period</option>
-            <option value="-1">Balance paid in full, but account has a positive balance</option>
-            <option value="0">Customer paid the minimum due amount, but not the entire balance</option>
-            <option value="1">Payment delay for 1 month</option>
-            <option value="2">Payment delay for 2 month</option>
-            <option value="3">Payment delay for 3 month</option>
-            <option value="4">Payment delay for 4 month</option>
-            <option value="5">Payment delay for 5 month</option>
-            <option value="6">Payment delay for 6 month</option>
-            <option value="7">Payment delay for 7 month</option>
-            <option value="8">Payment delay for 8 month</option>
-            <option value="9">Payment delay for 9 month and above</option>
-        </select>
-        <br>
+            <!--paid2_aug-->
+            <label for="paid2_aug">Paid 2 for august:</label>
+            <input type="number" id="paid2_aug" name="paid2_aug" placeholder="Enter amount" required>
+            <br>
 
-        <!--bill2_aug-->
-        <label for="bill2_aug">Bill 2 for august:</label>
-        <input type="number" id="bill2_aug" name="bill2_aug" placeholder="Enter amount" required>
-        <br>
+            <!--pay3_jul-->
+            <label for="pay3_jul">Payment 3:</label>
+            <select id="pay3_jul" name="pay3_jul" required>
+                <option value="">Select payment 3 for july</option>
+                <option value="-2">Balance paid in full and no transactions this period</option>
+                <option value="-1">Balance paid in full, but account has a positive balance</option>
+                <option value="0">Customer paid the minimum due amount, but not the entire balance</option>
+                <option value="1">Payment delay for 1 month</option>
+                <option value="2">Payment delay for 2 month</option>
+                <option value="3">Payment delay for 3 month</option>
+                <option value="4">Payment delay for 4 month</option>
+                <option value="5">Payment delay for 5 month</option>
+                <option value="6">Payment delay for 6 month</option>
+                <option value="7">Payment delay for 7 month</option>
+                <option value="8">Payment delay for 8 month</option>
+                <option value="9">Payment delay for 9 month and above</option>
+            </select>
+            <br>
 
-        <!--paid2_aug-->
-        <label for="paid2_aug">Paid 2 for august:</label>
-        <input type="number" id="paid2_aug" name="paid2_aug" placeholder="Enter amount" required>
-        <br>
+            <!--bill3_jul-->
+            <label for="bill3_jul">Bill 3 for july:</label>
+            <input type="number" id="bill3_jul" name="bill3_jul" placeholder="Enter amount" required>
+            <br>
 
-        <!--pay3_jul-->
-        <label for="pay3_jul">Payment 3:</label>
-        <select id="pay3_jul" name="pay3_jul" required>
-            <option value="">Select payment 3 for july</option>
-            <option value="-2">Balance paid in full and no transactions this period</option>
-            <option value="-1">Balance paid in full, but account has a positive balance</option>
-            <option value="0">Customer paid the minimum due amount, but not the entire balance</option>
-            <option value="1">Payment delay for 1 month</option>
-            <option value="2">Payment delay for 2 month</option>
-            <option value="3">Payment delay for 3 month</option>
-            <option value="4">Payment delay for 4 month</option>
-            <option value="5">Payment delay for 5 month</option>
-            <option value="6">Payment delay for 6 month</option>
-            <option value="7">Payment delay for 7 month</option>
-            <option value="8">Payment delay for 8 month</option>
-            <option value="9">Payment delay for 9 month and above</option>
-        </select>
-        <br>
+            <!--paid3_jul-->
+            <label for="paid3_jul">Paid 3 for july:</label>
+            <input type="number" id="paid3_jul" name="paid3_jul" placeholder="Enter amount" required>
+            <br>
 
-        <!--bill3_jul-->
-        <label for="bill3_jul">Bill 3 for july:</label>
-        <input type="number" id="bill3_jul" name="bill3_jul" placeholder="Enter amount" required>
-        <br>
+            <!--pay4_jun-->
+            <label for="pay4_jun">Payment 4:</label>
+            <select id="pay4_jun" name="pay4_jun" required>
+                <option value="">Select payment 4 for june</option>
+                <option value="-2">Balance paid in full and no transactions this period</option>
+                <option value="-1">Balance paid in full, but account has a positive balance</option>
+                <option value="0">Customer paid the minimum due amount, but not the entire balance</option>
+                <option value="1">Payment delay for 1 month</option>
+                <option value="2">Payment delay for 2 month</option>
+                <option value="3">Payment delay for 3 month</option>
+                <option value="4">Payment delay for 4 month</option>
+                <option value="5">Payment delay for 5 month</option>
+                <option value="6">Payment delay for 6 month</option>
+                <option value="7">Payment delay for 7 month</option>
+                <option value="8">Payment delay for 8 month</option>
+                <option value="9">Payment delay for 9 month and above</option>
+            </select>
+            <br>
 
-        <!--paid3_jul-->
-        <label for="paid3_jul">Paid 3 for july:</label>
-        <input type="number" id="paid3_jul" name="paid3_jul" placeholder="Enter amount" required>
-        <br>
+            <!--bill4_jun-->
+            <label for="bill4_jun">Bill 4 for june:</label>
+            <input type="number" id="bill4_jun" name="bill4_jun" placeholder="Enter amount" required>
+            <br>
 
-        <!--pay4_jun-->
-        <label for="pay4_jun">Payment 4:</label>
-        <select id="pay4_jun" name="pay4_jun" required>
-            <option value="">Select payment 4 for june</option>
-            <option value="-2">Balance paid in full and no transactions this period</option>
-            <option value="-1">Balance paid in full, but account has a positive balance</option>
-            <option value="0">Customer paid the minimum due amount, but not the entire balance</option>
-            <option value="1">Payment delay for 1 month</option>
-            <option value="2">Payment delay for 2 month</option>
-            <option value="3">Payment delay for 3 month</option>
-            <option value="4">Payment delay for 4 month</option>
-            <option value="5">Payment delay for 5 month</option>
-            <option value="6">Payment delay for 6 month</option>
-            <option value="7">Payment delay for 7 month</option>
-            <option value="8">Payment delay for 8 month</option>
-            <option value="9">Payment delay for 9 month and above</option>
-        </select>
-        <br>
+            <!--paid4_jun-->
+            <label for="paid4_jun">Paid 4 for june:</label>
+            <input type="number" id="paid4_jun" name="paid4_jun" placeholder="Enter amount" required>
+            <br>
 
-        <!--bill4_jun-->
-        <label for="bill4_jun">Bill 4 for june:</label>
-        <input type="number" id="bill4_jun" name="bill4_jun" placeholder="Enter amount" required>
-        <br>
+            <!--pay5_may-->
+            <label for="pay5_may">Payment 5:</label>
+            <select id="pay5_may" name="pay5_may" required>
+                <option value="">Select payment 5 for may</option>
+                <option value="-2">Balance paid in full and no transactions this period</option>
+                <option value="-1">Balance paid in full, but account has a positive balance</option>
+                <option value="0">Customer paid the minimum due amount, but not the entire balance</option>
+                <option value="1">Payment delay for 1 month</option>
+                <option value="2">Payment delay for 2 month</option>
+                <option value="3">Payment delay for 3 month</option>
+                <option value="4">Payment delay for 4 month</option>
+                <option value="5">Payment delay for 5 month</option>
+                <option value="6">Payment delay for 6 month</option>
+                <option value="7">Payment delay for 7 month</option>
+                <option value="8">Payment delay for 8 month</option>
+                <option value="9">Payment delay for 9 month and above</option>
+            </select>
+            <br>
 
-        <!--paid4_jun-->
-        <label for="paid4_jun">Paid 4 for june:</label>
-        <input type="number" id="paid4_jun" name="paid4_jun" placeholder="Enter amount" required>
-        <br>
+            <!--bill5_may-->
+            <label for="bill5_may">Bill 5 for may:</label>
+            <input type="number" id="bill5_may" name="bill5_may" placeholder="Enter amount" required>
+            <br>
 
-        <!--pay5_may-->
-        <label for="pay5_may">Payment 5:</label>
-        <select id="pay5_may" name="pay5_may" required>
-            <option value="">Select payment 5 for may</option>
-            <option value="-2">Balance paid in full and no transactions this period</option>
-            <option value="-1">Balance paid in full, but account has a positive balance</option>
-            <option value="0">Customer paid the minimum due amount, but not the entire balance</option>
-            <option value="1">Payment delay for 1 month</option>
-            <option value="2">Payment delay for 2 month</option>
-            <option value="3">Payment delay for 3 month</option>
-            <option value="4">Payment delay for 4 month</option>
-            <option value="5">Payment delay for 5 month</option>
-            <option value="6">Payment delay for 6 month</option>
-            <option value="7">Payment delay for 7 month</option>
-            <option value="8">Payment delay for 8 month</option>
-            <option value="9">Payment delay for 9 month and above</option>
-        </select>
-        <br>
+            <!--paid5_may-->
+            <label for="paid5_may">Paid 5 for may:</label>
+            <input type="number" id="paid5_may" name="paid5_may" placeholder="Enter amount" required>
+            <br>
 
-        <!--bill5_may-->
-        <label for="bill5_may">Bill 5 for may:</label>
-        <input type="number" id="bill5_may" name="bill5_may" placeholder="Enter amount" required>
-        <br>
+            <!--pay6_apr-->
+            <label for="pay6_apr">Payment 6:</label>
+            <select id="pay6_apr" name="pay6_apr" required>
+                <option value="">Select payment 6 for april</option>
+                <option value="-2">Balance paid in full and no transactions this period</option>
+                <option value="-1">Balance paid in full, but account has a positive balance</option>
+                <option value="0">Customer paid the minimum due amount, but not the entire balance</option>
+                <option value="1">Payment delay for 1 month</option>
+                <option value="2">Payment delay for 2 month</option>
+                <option value="3">Payment delay for 3 month</option>
+                <option value="4">Payment delay for 4 month</option>
+                <option value="5">Payment delay for 5 month</option>
+                <option value="6">Payment delay for 6 month</option>
+                <option value="7">Payment delay for 7 month</option>
+                <option value="8">Payment delay for 8 month</option>
+                <option value="9">Payment delay for 9 month and above</option>
+            </select>
+            <br>
 
-        <!--paid5_may-->
-        <label for="paid5_may">Paid 5 for may:</label>
-        <input type="number" id="paid5_may" name="paid5_may" placeholder="Enter amount" required>
-        <br>
+            <!--bill6_apr-->
+            <label for="bill6_apr">Bill 6 for april:</label>
+            <input type="number" id="bill6_apr" name="bill6_apr" placeholder="Enter amount" required>
+            <br>
 
-        <!--pay6_apr-->
-        <label for="pay6_apr">Payment 6:</label>
-        <select id="pay6_apr" name="pay6_apr" required>
-            <option value="">Select payment 6 for april</option>
-            <option value="-2">Balance paid in full and no transactions this period</option>
-            <option value="-1">Balance paid in full, but account has a positive balance</option>
-            <option value="0">Customer paid the minimum due amount, but not the entire balance</option>
-            <option value="1">Payment delay for 1 month</option>
-            <option value="2">Payment delay for 2 month</option>
-            <option value="3">Payment delay for 3 month</option>
-            <option value="4">Payment delay for 4 month</option>
-            <option value="5">Payment delay for 5 month</option>
-            <option value="6">Payment delay for 6 month</option>
-            <option value="7">Payment delay for 7 month</option>
-            <option value="8">Payment delay for 8 month</option>
-            <option value="9">Payment delay for 9 month and above</option>
-        </select>
-        <br>
+            <!--paid6_apr-->
+            <label for="paid6_apr">Paid 6 for april:</label>
+            <input type="number" id="paid6_apr" name="paid6_apr" placeholder="Enter amount" required>
+            <br>
 
-        <!--bill6_apr-->
-        <label for="bill6_apr">Bill 6 for april:</label>
-        <input type="number" id="bill6_apr" name="bill6_apr" placeholder="Enter amount" required>
-        <br>
-
-        <!--paid6_apr-->
-        <label for="paid6_apr">Paid 6 for april:</label>
-        <input type="number" id="paid6_apr" name="paid6_apr" placeholder="Enter amount" required>
-        <br>
-
-        <input type="submit" class="submit" value="Submit">
+            <input type="submit" class="submit" value="Submit">
+        </div>
     </form>
 
 
