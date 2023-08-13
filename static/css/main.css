@@ -13,7 +13,7 @@ header {
     top: 0;
     width: 100%;
     text-align: center;
-    border: 5px #5c82ff;
+    border: 5px #7797ff;
     border-style: outset;
 }
 
@@ -43,7 +43,7 @@ input {
 
 .entry {
     width: 100%;
-    border: 5px #5c82ff;
+    border: 5px #7797ff;
     border-style: outset;
 }
 
@@ -57,11 +57,14 @@ input {
 }
 
 .csv_submit {
+    background-color: #436fff;
+    color: #000000;
+    text-shadow: 1px 1px 5px #aabeff;
     width: 10%;
-    font-size: medium;
+    font-size: large;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    color: #00ff48;
-    background-color: #000000;
+    border: 2px #8da7fc;
+    border-style: outset;
 }
 
 select {

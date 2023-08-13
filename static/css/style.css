@@ -1,8 +1,8 @@
 body {
-    background-image: url('images/image.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+    background-image: url('images/credit-card.jpg');
+    background-size: auto;
+    background-repeat: initial;
+    background-position: top;
     background-color: #436fff;
     background-attachment: fixed;
 }
@@ -19,38 +19,57 @@ header {
     border: 2px #000000;
 }
 
-form {
-    font-size: larger;
-    padding: 50px;
-    top: 0;
-    left: 0;
-}
-
-input {
-    color: #000000;
-    width: 100%;
-    padding: 10px 10px;
-    margin: 8px 0;
-    box-sizing: border-box;
-    background-color: #84a1ff;
-    border-color: #000000;
-    border-style: outset;
-}
-
-label {
-    background-color: #84a1ff;
-    border-color: #000000;
-    border-style: outset;
-    color: #000000;
-    text-shadow: 0 0 3px #0d00ff, 0 0 5px #ffffff;
-}
-
-table {
+.container {
     background-color: #436fff;
-    font-size: large;
-    text-align: center;
+    font-size: medium;
+    font-family: 'Arial Narrow';
     color: #000000;
-    text-shadow: 0 0 3px #0d00ff, 0 0 5px #ffffff;
-    border-color: #000000;
-    border-style: outset;
+    border: 1px #000000;
+    border-style: double;
+    text-align: center;
+    width: max-content;
+}
+
+.scores_container {
+    background-color: #436fff;
+    left: 0px;
+    font-size: larger;
+    font-family: 'Arial Narrow';
+    color: #000000;
+    border: 1px #000000;
+    border-style: double;
+    text-align: center;
+    width: 100%;
+}
+
+.info {
+    background-color: #436fff;
+    left: 0px;
+    font-size: small;
+    font-family: 'Arial Narrow';
+    color: #000000;
+    border: 1px #000000;
+    border-style: double;
+    text-align: left;
+    width: 100%;
+}
+
+.desc {
+    background-color: #436fff;
+    left: 0;
+    font-size: larger;
+    font-family: sans-serif;
+    color: #000000;
+    text-align: left;
+    width: 100%;
+}
+
+.download_csv {
+    background-color: #436fff;
+    left: 0;
+    font-size: larger;
+    color: #000000;
+    text-shadow: 1px 1px 5px #aabeff;
+    text-align: center;
+    width: max-content;
 }

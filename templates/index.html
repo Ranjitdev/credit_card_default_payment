@@ -13,8 +13,7 @@
         <div class="dropdown">
             <button class="dropbtn">...</button>
             <div class="dropdown-content">
-                <a href="/multi_entry">Excel Entry</a>
-                <a href="/excel_data">Excel Data View</a>
+                <a href="/excel_data">Excel Data</a>
                 <a href="/retrain_model">Retrain Model</a>
                 <a href="/scores">Model Scores</a>
             </div>
@@ -35,7 +34,19 @@
         {% endif %}
     </p>
 
+    <form action="/multi_entry" method='POST' enctype="multipart/form-data">
+        <label class="csv_tag">Multi Entry:</label>
+        <br>
+        <div class="entry">
+            <!--upload csv-->
+            <label for="file" class="csv_tag">Upload CSV File</label>
+            <input type="file" name="file" id="file" class="upload_csv" required>
+            <input type="submit" value="Upload" class="csv_submit">
+        </div>
+    </form>
+
     <form action="/submit" method="POST">
+        <label class="csv_tag">Single Entry:</label>
         <div class="entry">
             <!--total_credit-->
             <label for="total_credit">Total credit:</label>

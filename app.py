@@ -4,7 +4,7 @@ from src.components.model_trainer import InitiateModelTraining
 from src.pipeline.data_pipe import DataPipe
 from src.exception import CustomException
 from src.logger import logging
-from flask import Flask, flash, request, redirect, url_for, render_template
+from flask import Flask, request, render_template, Response, send_file
 import pandas as pd
 import sys
 
@@ -82,10 +82,13 @@ def predict():
 @app.route('/multi_entry',  methods=['POST', 'GET'])
 def multi_entry():
     try:
-        csv_file = request.files.get('file')
-        output_data = DataPipe().predict_multiple(data=csv_file)
-        output_data = output_data.to_html(classes='table table-bordered table-hover', index=False)
-        return render_template('excel_data.html', raw_data=output_data)
+        if request.method == 'POST':
+            csv_file = request.files['file']
+            output_data = DataPipe().predict_multiple(data=csv_file)
+            html_data = output_data.to_html(classes='table table-bordered table-hover', index=False)
+            return render_template('excel_data.html', raw_data=html_data)
+        else:
+            return str(request.method) + ' is wrong method'
     except Exception as e:
             raise CustomException(e, sys)
 
@@ -93,8 +96,8 @@ def multi_entry():
 def raw_data():
     try:
         data = pd.read_csv('artifacts/data.csv').drop('next_month', axis=1)
-        data_html = data.to_html(classes='table table-bordered table-hover', index=False)
-        return render_template('excel_data.html', raw_data=data_html)
+        html_data = data.to_html(classes='table table-bordered table-hover', index=False)
+        return render_template('excel_data.html', raw_data=html_data)
     except Exception as e:
         raise CustomException(e, sys)
 
@@ -118,6 +121,11 @@ def scores():
         return render_template('scores.html', scores=scores)
     except Exception as e:
         raise CustomException(e, sys)
+
+@app.route('/download_csv', methods=['POST', 'GET'])
+def download_csv():
+    path = r'artifacts/data.csv'
+    return send_file(path, mimetype='text/csv', as_attachment=True, download_name='Credit card data.csv')
 
 
 if __name__=='__main__':
