@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 from typing import List
 
 Project = 'Credit card default payment'
-Version = 1.0
+Version = 1.1
 Author = 'Ranjit Kundu'
 Description = ''
 

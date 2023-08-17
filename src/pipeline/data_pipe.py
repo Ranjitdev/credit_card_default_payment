@@ -2,6 +2,8 @@ from src.exception import CustomException
 from src.logger import logging
 from src.components.data_transformation import InitiateDataTransformation
 from src.components.model_trainer import InitiateModelTraining
+from src.components.data_ingesion import InitiateDataIngesion
+from collections import Counter
 from src.utils import save_obj, load_obj
 from dataclasses import dataclass
 from typing import List, Tuple, Dict
@@ -45,13 +47,27 @@ class DataPipe:
             return 'Yes'
     
     def predict_multiple(self, data: pd.DataFrame) -> List[float]:
-        model = load_obj(self.config.model)
-        csv_file = data.read().decode('utf-8')
-        binary_file = io.StringIO(csv_file)
-        df = pd.read_csv(binary_file).drop('next_month', axis=1)
-        client_data = self.transformer_pipe(df)
-        predictions = model.predict(client_data)
-        pred_array = pd.DataFrame(predictions)
-        final_file = pd.concat((df, pred_array), axis=1, ignore_index=True)
-        final_file.columns = list(df.columns) + ['next_month']
-        return final_file
+        try:
+            model = load_obj(self.config.model)
+            csv_file = data.read().decode('utf-8')
+            binary_file = io.StringIO(csv_file)
+            df = pd.read_csv(binary_file)
+            data = pd.read_csv('artifacts/data.csv').drop('next_month', axis=1)
+            if Counter(list(df.columns)) == Counter(list(data.columns)):
+                    client_data = self.transformer_pipe(df)
+                    predictions = model.predict(client_data)
+                    pred_array = pd.DataFrame(predictions)
+                    final_file = pd.concat((df, pred_array), axis=1, ignore_index=True)
+                    final_file.columns = list(df.columns) + ['next_month']
+                    return final_file
+            else:
+                return pd.DataFrame({
+                        'Error': ['Data Not Matching'],
+                        'Input Data Columns': [list(df.columns)],
+                        'Required Data Columns': [list(data.columns)],
+                        'Solution': ['View The Excel Data For Referance']
+                    }).T
+                
+        except Exception as e:
+            raise CustomException(e, sys)
+    

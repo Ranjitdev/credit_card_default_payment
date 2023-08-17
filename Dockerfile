@@ -8,4 +8,4 @@ RUN apt-get update \
 COPY . .
 RUN pip install -r requirements.txt
 EXPOSE 5000
-CMD [ "python", "app.py", "run" ]
+CMD [ "python", "main.py", "run" ]
