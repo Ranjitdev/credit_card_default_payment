@@ -81,46 +81,41 @@ def predict():
 
 @app.route('/multi_entry',  methods=['POST', 'GET'])
 def multi_entry():
-    try:
-        if request.method == 'POST':
+    if request.method == 'POST':
+        try:
             csv_file = request.files['file']
             output_data = DataPipe().predict_multiple(data=csv_file)
             html_data = output_data.to_html(index=True)
             return render_template('excel_data.html', raw_data=html_data)
-        else:
-            return str(request.method) + ' is wrong method'
-    except Exception as e:
-            raise CustomException(e, sys)
+        except Exception as e:
+            out_error = pd.DataFrame({
+                        'Error': ['Data Format Mismatch'],
+                        'Solution': ['Upload CSV File']
+                    }).T
+            return render_template('excel_data.html', raw_data=out_error.to_html(index=True))
+    else:
+        return str(request.method) + ' is wrong method'
 
 @app.route('/excel_data',  methods=['POST', 'GET'])
 def raw_data():
-    try:
-        data = pd.read_csv('artifacts/data.csv').drop('next_month', axis=1)
-        html_data = data.to_html(classes='table table-bordered table-hover', index=False)
-        return render_template('excel_data.html', raw_data=html_data)
-    except Exception as e:
-        raise CustomException(e, sys)
+    data = pd.read_csv('artifacts/test.csv', index_col=None).drop('next_month', axis=1)
+    html_data = data.to_html(classes='table table-bordered table-hover', index=False)
+    return render_template('excel_data.html', raw_data=html_data)
 
 @app.route('/retrain_model',  methods=['POST', 'GET'])
 def retrain_model():
-    try:
-        data, train_data, test_data = InitiateDataIngesion().get_data()
-        x_train_array, x_test_array, y_train, y_test = InitiateDataTransformation().transform_data(data, train_data, test_data)
-        result = InitiateModelTraining(x_train_array, x_test_array, y_train, y_test).evaluate_models()
-        best_model, best_score, best_param = InitiateModelTraining.evaluate_scores(result)
-        InitiateModelTraining(x_train_array, x_test_array, y_train, y_test).train_model(best_model, best_score, **best_param)
-        return render_template('index.html', training_done='Model Trained Successfully')
-    except Exception as e:
-        raise CustomException(e, sys)
+    data, train_data, test_data = InitiateDataIngesion().get_data()
+    x_train_array, x_test_array, y_train, y_test = InitiateDataTransformation().transform_data(data, train_data, test_data)
+    result = InitiateModelTraining(x_train_array, x_test_array, y_train, y_test).evaluate_models()
+    best_model, best_score, best_param = InitiateModelTraining.evaluate_scores(result)
+    InitiateModelTraining(x_train_array, x_test_array, y_train, y_test).train_model(best_model, best_score, **best_param)
+    return render_template('index.html', training_done='Model Trained Successfully')
 
 @app.route('/scores', methods=['POST', 'GET'])
 def scores():
-    try:
-        data = pd.read_json('artifacts/model_scores.json')
-        scores = data.to_html(index=True)
-        return render_template('scores.html', scores=scores)
-    except Exception as e:
-        raise CustomException(e, sys)
+    data = pd.read_json('artifacts/model_scores.json')
+    scores = data.to_html(index=True)
+    return render_template('scores.html', scores=scores)
 
 @app.route('/download_csv', methods=['POST', 'GET'])
 def download_csv():

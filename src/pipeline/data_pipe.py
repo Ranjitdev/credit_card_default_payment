@@ -52,22 +52,21 @@ class DataPipe:
             csv_file = data.read().decode('utf-8')
             binary_file = io.StringIO(csv_file)
             df = pd.read_csv(binary_file)
-            data = pd.read_csv('artifacts/data.csv').drop('next_month', axis=1)
+            data = pd.read_csv('artifacts/test.csv').drop('next_month', axis=1)
             if Counter(list(df.columns)) == Counter(list(data.columns)):
-                    client_data = self.transformer_pipe(df)
-                    predictions = model.predict(client_data)
-                    pred_array = pd.DataFrame(predictions)
-                    final_file = pd.concat((df, pred_array), axis=1, ignore_index=True)
-                    final_file.columns = list(df.columns) + ['next_month']
-                    return final_file
+                client_data = self.transformer_pipe(df)
+                predictions = model.predict(client_data)
+                pred_array = pd.DataFrame(predictions)
+                final_file = pd.concat((df, pred_array), axis=1, ignore_index=True)
+                final_file.columns = list(df.columns) + ['next_month']
+                return final_file
             else:
                 return pd.DataFrame({
                         'Error': ['Data Not Matching'],
                         'Input Data Columns': [list(df.columns)],
                         'Required Data Columns': [list(data.columns)],
-                        'Solution': ['View The Excel Data For Referance']
+                        'Solution': ['View The Example Data For Referance']
                     }).T
-                
         except Exception as e:
             raise CustomException(e, sys)
     
